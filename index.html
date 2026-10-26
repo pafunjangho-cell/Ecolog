@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบนิเวศ | สื่อการเรียนรู้ ม.6</title>
+<style>
+:root{--green:#176b50;--mint:#dff4e7;--blue:#dceef8;--ink:#20332d;--gold:#f5c65d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,"Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#e9f7ed,#e7f3fa);color:var(--ink);line-height:1.6}
+header{padding:28px 18px 22px;text-align:center;background:linear-gradient(120deg,#145b45,#2e8b62);color:white}
+header h1{margin:0;font-size:clamp(1.7rem,4vw,2.6rem)} header p{margin:6px 0 0}
+main{max-width:1100px;margin:auto;padding:18px}
+.panel{background:#fff;border-radius:18px;padding:20px;margin:0 0 18px;box-shadow:0 8px 24px #174d3712}
+h2{color:var(--green);margin:0 0 10px;font-size:1.35rem}
+.intro{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.info{background:#f3faf5;border-radius:12px;padding:12px}
+.scene{border-radius:16px;overflow:hidden;background:#d8f0fb;border:1px solid #c8e3e8}
+svg{display:block;width:100%;height:auto}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:14px}
+button{border:0;border-radius:10px;padding:10px 15px;background:var(--green);color:white;font-weight:bold;cursor:pointer}
+button.secondary{background:#e7f2ec;color:var(--green);border:1px solid #b9dac8}
+button:hover{filter:brightness(.96)}
+label{font-weight:bold}
+input[type=range]{accent-color:var(--green);width:min(330px,100%)}
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.stat{background:#f5f9f6;border-radius:12px;padding:12px}
+.stat strong{display:block;color:var(--green);font-size:1.3rem}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.9rem;margin-top:8px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.question{border:1px solid #dcebe1;border-radius:13px;padding:14px;margin:12px 0}
+.question p{font-weight:bold;margin:0 0 8px}
+.question label{display:block;font-weight:normal;margin:6px 0;cursor:pointer}
+.feedback{margin-top:7px;font-weight:bold}
+#score{font-weight:bold;color:var(--green)}
+footer{text-align:center;padding:10px 20px 28px;color:#557166;font-size:.9rem}
+@media(max-width:600px){main{padding:12px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌿 สำรวจความสัมพันธ์ในระบบนิเวศ</h1>
+  <p>สื่อการเรียนรู้แบบโต้ตอบ วิชาชีววิทยา ชั้นมัธยมศึกษาปีที่ 6</p>
+</header>
+<main>
+  <section class="panel">
+    <h2>1. ระบบนิเวศมีอะไรบ้าง?</h2>
+    <div class="intro">
+      <div class="info"><b>🌱 สิ่งมีชีวิต</b><br>ผู้ผลิต เช่น พืช · ผู้บริโภค เช่น ตั๊กแตน กบ งู · ผู้ย่อยสลาย เช่น เห็ดราและแบคทีเรีย</div>
+      <div class="info"><b>☀️ สิ่งไม่มีชีวิต</b><br>แสง น้ำ อากาศ ดิน และอุณหภูมิ ซึ่งส่งผลต่อการดำรงชีวิตของสิ่งมีชีวิต</div>
+      <div class="info"><b>🔗 ความสัมพันธ์</b><br>สิ่งมีชีวิตเชื่อมโยงกันผ่านการกินเป็นอาหาร การแข่งขัน และการพึ่งพาอาศัยกัน</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>2. ทดลองปรับสมดุลระบบนิเวศ</h2>
+    <p>เลื่อนตัวควบคุมเพื่อเปลี่ยนจำนวนตั๊กแตน แล้วสังเกตการเปลี่ยนแปลงของพืช กบ และงูในแบบจำลอง</p>
+    <div class="scene">
+      <svg id="ecosystem" viewBox="0 0 900 400" role="img" aria-label="ภาพจำลองระบบนิเวศทุ่งหญ้า">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bce8fb"/><stop offset="1" stop-color="#effaf5"/></linearGradient>
+          <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8ccf78"/><stop offset="1" stop-color="#4e9d5a"/></linearGradient>
+        </defs>
+        <rect width="900" height="400" fill="url(#sky)"/>
+        <circle cx="780" cy="62" r="34" fill="#ffd76d"/>
+        <g fill="#fff" opacity=".8"><ellipse cx="130" cy="66" rx="50" ry="16"/><ellipse cx="160" cy="57" rx="34" ry="20"/><ellipse cx="190" cy="68" rx="40" ry="14"/></g>
+        <path d="M0 245 Q180 190 330 242 T650 225 T900 235 L900 400 L0 400Z" fill="url(#ground)"/>
+        <path d="M0 300 Q210 275 400 310 T900 290 L900 400 L0 400Z" fill="#428b4f" opacity=".55"/>
+        <g id="plants"></g><g id="grasshoppers"></g><g id="frogs"></g><g id="snakes"></g>
+        <g transform="translate(35 20)"><rect width="250" height="34" rx="10" fill="#ffffffd9"/><text x="12" y="22" font-size="15" fill="#205540">พลังงาน: ☀️ → 🌿 → 🦗 → 🐸 → 🐍</text></g>
+        <g id="sunbeam" opacity=".2"><path d="M780 100 L520 310 L600 320Z" fill="#fff3a8"/></g>
+      </svg>
+    </div>
+    <div class="controls">
+      <label for="grasshopper">จำนวนตั๊กแตน: <span id="ghValue">50</span>%</label>
+      <input id="grasshopper" type="range" min="10" max="100" value="50" step="5">
+      <button id="reset" class="secondary" type="button">คืนค่าเริ่มต้น</button>
+      <button id="animate" type="button">▶ เล่นการเปลี่ยนแปลง</button>
+    </div>
+    <div class="statrow" aria-live="polite">
+      <div class="stat">🌿 พืชในทุ่ง<strong id="plantStat">70%</strong><small>อาหารของตั๊กแตน</small></div>
+      <div class="stat">🦗 ตั๊กแตน<strong id="ghStat">50%</strong><small>ผู้บริโภคอันดับที่ 1</small></div>
+      <div class="stat">🐸 กบ<strong id="frogStat">45%</strong><small>ผู้บริโภคอันดับที่ 2</small></div>
+      <div class="stat">🐍 งู<strong id="snakeStat">35%</strong><small>ผู้ล่าระดับสูง</small></div>
+    </div>
+    <div class="legend">
+      <span><i class="dot" style="background:#31834c"></i>พืช</span>
+      <span><i class="dot" style="background:#9a6b29"></i>ตั๊กแตน</span>
+      <span><i class="dot" style="background:#2c9a77"></i>กบ</span>
+      <span><i class="dot" style="background:#5a6243"></i>งู</span>
+    </div>
+    <p id="explanation" aria-live="polite">เมื่อมีตั๊กแตนระดับปานกลาง พืชยังคงมีอยู่ และมีกบกับงูเป็นผู้บริโภคในลำดับถัดไป</p>
+  </section>
+
+  <section class="panel">
+    <h2>3. สรุปความสัมพันธ์</h2>
+    <p><b>โซ่อาหาร:</b> หญ้า → ตั๊กแตน → กบ → งู → ผู้ย่อยสลาย</p>
+    <p><b>การถ่ายทอดพลังงาน:</b> พลังงานไหลจากผู้ผลิตไปยังผู้บริโภคแต่ละลำดับ โดยพลังงานที่ถ่ายทอดต่อจะลดลง ส่วนสารอาหารหมุนเวียนกลับสู่สิ่งแวดล้อมผ่านการย่อยสลาย</p>
+    <p><b>ข้อควรจำ:</b> หากประชากรหนึ่งเปลี่ยนแปลง ย่อมส่งผลต่อประชากรอื่นในระบบนิเวศได้ แบบจำลองนี้แสดงแนวโน้มอย่างง่าย ไม่ใช่การทำนายประชากรจริง</p>
+  </section>
+
+  <section class="panel">
+    <h2>4. คำถามท้ายกิจกรรม</h2>
+    <p>เลือกคำตอบทั้ง 3 ข้อ แล้วกด “ตรวจคำตอบ” เพื่อดูคะแนนและเฉลย</p>
+    <form id="quiz">
+      <div class="question">
+        <p>ข้อ 1. สิ่งมีชีวิตใดทำหน้าที่เป็นผู้ผลิตในโซ่อาหารนี้?</p>
+        <label><input type="radio" name="q1" value="a"> ก. งู</label>
+        <label><input type="radio" name="q1" value="b"> ข. หญ้า</label>
+        <label><input type="radio" name="q1" value="c"> ค. กบ</label>
+        <div class="feedback" id="f1"></div>
+      </div>
+      <div class="question">
+        <p>ข้อ 2. ถ้าจำนวนตั๊กแตนเพิ่มขึ้นมากในช่วงแรก สิ่งใดมีแนวโน้มเกิดขึ้นกับพืช?</p>
+        <label><input type="radio" name="q2" value="a"> ก. พืชอาจลดลงเพราะถูกกินมากขึ้น</label>
+        <label><input type="radio" name="q2" value="b"> ข. พืชเพิ่มขึ้นทันทีเสมอ</label>
+        <label><input type="radio" name="q2" value="c"> ค. พืชไม่มีผลต่อระบบนิเวศ</label>
+        <div class="feedback" id="f2"></div>
+      </div>
+      <div class="question">
+        <p>ข้อ 3. ข้อใดอธิบายบทบาทของผู้ย่อยสลายได้ถูกต้องที่สุด?</p>
+        <label><input type="radio" name="q3" value="a"> ก. สร้างอาหารจากแสงแดดเท่านั้น</label>
+        <label><input type="radio" name="q3" value="b"> ข. ล่าสัตว์ทุกชนิดในระบบนิเวศ</label>
+        <label><input type="radio" name="q3" value="c"> ค. ย่อยซากและคืนสารอาหารสู่สิ่งแวดล้อม</label>
+        <div class="feedback" id="f3"></div>
+      </div>
+      <button type="submit">ตรวจคำตอบ</button>
+      <button type="button" id="showAnswers" class="secondary">แสดงเฉลย</button>
+      <p id="score" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<footer>สื่อประกอบการเรียนรู้ชีววิทยา ม.6 · ระบบนิเวศและความสัมพันธ์ของสิ่งมีชีวิต</footer>
+<script>
+const $ = id => document.getElementById(id);
+const slider = $('grasshopper');
+const ns = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent, content=''){
+  const n=document.createElementNS(ns,tag);
+  Object.entries(attrs||{}).forEach(([k,v])=>n.setAttribute(k,v));
+  if(content) n.textContent=content;
+  parent.appendChild(n); return n;
+}
+function plant(x,y,s){
+ const g=el('g',{},$('plants'));
+ el('path',{d:`M${x} ${y} q-5 -${18*s} -2 -${27*s} M${x} ${y-10*s} q-18 -15  -20 -3 q12 13 20 3 M${x} ${y-17*s} q16 -17 21 -5 q-7 12 -21 5`,fill:'#2f8748',stroke:'#246d3c','stroke-width':2},g);
+ el('path',{d:`M${x-7*s} ${y} l${7*s} -${13*s} l${7*s} ${13*s}`,fill:'none',stroke:'#3b9c4f','stroke-width':2},g);
+}
+function bug(x,y,scale,color,kind){
+ const g=el('g',{transform:`translate(${x} ${y}) scale(${scale})`},kind==='frog'?$('frogs'):kind==='snake'?$('snakes'):$('grasshoppers'));
+ if(kind==='grass'){
+  el('ellipse',{cx:0,cy:0,rx:10,ry:5,fill:color,stroke:'#65491f','stroke-width':1},g);
+  el('circle',{cx:9,cy:-2,r:4,fill:color},g);
+  el('path',{d:'M-3 3 l-8 10 M2 3 l8 9 M-4 -2 l-9 -9 M4 -2 l12 -10',stroke:'#65491f','stroke-width':2,fill:'none'},g);
+  el('path',{d:'M10 -5 q8 -12 10 -6 M8 -5 q4 -13 8 -11',stroke:'#65491f','stroke-width':1,fill:'none'},g);
+ } else if(kind==='frog'){
+  el('ellipse',{cx:0,cy:0,rx:15,ry:10,fill:color},g);
+  el('circle',{cx:-8,cy:-8,r:5,fill:color});el('circle',{cx:8,cy:-8,r:5,fill:color});
+  el('circle',{cx:-8,cy:-9,r:2,fill:'white'});el('circle',{cx:8,cy:-9,r:2,fill:'white'});
+  el('path',{d:'M-8 6 l-10 7 M8 6 l10 7',stroke:'#176b50','stroke-width':3,'stroke-linecap':'round'},g);
+ } else {
+  el('path',{d:'M-35 2 Q-20 -12 0 0 T32 0 Q43 4 34 13 Q20 18 10 8 T-10 8 T-35 2',fill:color,stroke:'#3f5039','stroke-width':2},g);
+  el('circle',{cx:29,cy:0,r:2,fill:'white'});
+ }
+}
+function render(){
+ const v=+slider.value;
+ const plantLevel=Math.max(15,Math.min(95,100-v*.62));
+ const frogLevel=Math.max(12,Math.min(90,v*.78+6));
+ const snakeLevel=Math.max(10,Math.min(85,frogLevel*.72+3));
+ $('ghValue').textContent=v;
+ $('plantStat').textContent=Math.round(plantLevel)+'%';
+ $('ghStat').textContent=v+'%';
+ $('frogStat').textContent=Math.round(frogLevel)+'%';
+ $('snakeStat').textContent=Math.round(snakeLevel)+'%';
+ $('plants').replaceChildren();$('grasshoppers').replaceChildren();$('frogs').replaceChildren();$('snakes').replaceChildren();
+ const plantN=Math.round(8+plantLevel/9);
+ for(let i=0;i<plantN;i++){let x=20+(i*83)%850,y=305+(i%3)*19;plant(x,y,.7+(i%3)*.15)}
+ const bugN=Math.round(4+v/9);
+ for(let i=0;i<bugN;i++)bug(45+(i*71)%810,275+(i%3)*22,.65,'#b78336','grass');
+ const frogN=Math.max(1,Math.round(frogLevel/17));
+ for(let i=0;i<frogN;i++)bug(120+i*155,330+(i%2)*10,.85,'#2c9a77','frog');
+ const snakeN=Math.max(1,Math.round(snakeLevel/30));
+ for(let i=0;i<snakeN;i++)bug(650+i*105,350,.8,'#667448','snake');
+ let msg;
+ if(v>=75)msg='ตั๊กแตนมีจำนวนสูง: การกินพืชมีแนวโน้มเพิ่มขึ้น และกบอาจมีอาหารมากขึ้น หากปัจจัยอื่นไม่เปลี่ยนแปลง';
+ else if(v<=30)msg='ตั๊กแตนมีจำนวนน้อย: พืชมีแนวโน้มเหลือมากขึ้น แต่กบและงูอาจมีอาหารลดลง';
+ else msg='เมื่อมีตั๊กแตนระดับปานกลาง พืชยังคงมีอยู่ และมีกบกับงูเป็นผู้บริโภคในลำดับถัดไป';
+ $('explanation').textContent=msg;
+}
+slider.addEventListener('input',render);
+$('reset').addEventListener('click',()=>{slider.value=50;render()});
+let anim=null;
+$('animate').addEventListener('click',()=>{
+ if(anim){clearInterval(anim);anim=null;$('animate').textContent='▶ เล่นการเปลี่ยนแปลง';return}
+ $('animate').textContent='Ⅱ หยุด';
+ let dir=1;
+ anim=setInterval(()=>{let v=+slider.value;if(v>=100)dir=-1;if(v<=10)dir=1;slider.value=v+dir*5;render()},350);
+});
+const answers={q1:'b',q2:'a',q3:'c'};
+const explanations={
+ q1:'ถูกต้อง: หญ้าเป็นผู้ผลิต เพราะสร้างอาหารด้วยการสังเคราะห์ด้วยแสง',
+ q2:'ถูกต้อง: เมื่อตั๊กแตนกินพืชมากขึ้น พืชมีแนวโน้มลดลง หากปัจจัยอื่นคงที่',
+ q3:'ถูกต้อง: ผู้ย่อยสลายช่วยย่อยซากสิ่งมีชีวิตและคืนสารอาหารสู่สิ่งแวดล้อม'
+};
+function reveal(){
+ let score=0;
+ for(let i=1;i<=3;i++){
+  const key='q'+i, chosen=document.querySelector(`input[name="${key}"]:checked`);
+  const f=$('f'+i);
+  if(chosen&&chosen.value===answers[key]){score++;f.textContent='✓ '+explanations[key];f.style.color='#176b50'}
+  else {f.textContent='เฉลย: '+explanations[key];f.style.color='#9a5a16'}
+ }
+ $('score').textContent='คะแนนของคุณ: '+score+'/3 ข้อ';
+}
+$('quiz').addEventListener('submit',e=>{e.preventDefault();reveal()});
+$('showAnswers').addEventListener('click',reveal);
+render();
+</script>
+</body>
+</html>
